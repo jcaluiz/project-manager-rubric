@@ -10,7 +10,6 @@ const findAllProducts = async () => {
 
 const findProductsById = async (productId) => {
   const error = await validateProducts.validateProductsFindById(productId);
-  console.log(error);
   if (error.type) return error;
   const [result] = await productsModel.findProductsById(productId);
   return { type: null, message: result };
