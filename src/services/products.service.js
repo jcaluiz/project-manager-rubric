@@ -16,8 +16,9 @@ const findProductsById = async (productId) => {
 };
 
 const insertProduct = async (product) => {
-  const [result] = await productsModel.insertProduct(product);
-  return { type: null, message: result };
+  const result = await validateProducts.validateInsertProducts(product);
+  if (result.type) return result;
+  return { type: null, message: result.message };
 };
 
 module.exports = {
