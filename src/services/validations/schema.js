@@ -45,8 +45,20 @@ const validateSalesSchema2 = async (sale) => {
   return result;
 };
 
+const validateUpdate = async (name) => {
+  if (!name) return { message: '"name" is required', status: 400 };
+  if (name.length < 5) {
+    return {
+      message: '"name" length must be at least 5 characters long',
+      status: 422,
+    }; 
+  }
+  return null;
+};
+
 module.exports = {
   validateSalesSchema,
   validateNameSchema,
   validateSalesSchema2,
+  validateUpdate,
 };

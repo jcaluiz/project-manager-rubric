@@ -63,6 +63,26 @@ const validateSalesFindById = async (saleId) => {
   return { type: null, message: '' };
 };
 
+const validateUpdateProducts = async (name, id) => {
+  const [productById] = await salesModel.findSalesById(id);
+  const validateName = await schema.validateUpdate(name);
+  if (validateName) {
+ return {
+   type: validateName.message,
+   message: validateName.message,
+   status: validateName.status,
+  }; 
+}
+  if (!productById || productById === []) {
+    return {
+      type: 'PRODUCT_NOT_FOUND',
+      message: 'Product not found',
+      status: 404,
+    };
+  }
+  return { type: null, message: '', status: 200 };
+};
+
 module.exports = {
   validateProducts,
   validateProductsFindById,
@@ -70,4 +90,5 @@ module.exports = {
   validateInsertSales,
   validateSales,
   validateSalesFindById,
+  validateUpdateProducts,
 };

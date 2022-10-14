@@ -21,8 +21,16 @@ const insertProduct = async (product) => {
   return { type: null, message: result.message };
 };
 
+const updateProduct = async (name, id) => {
+  const result = await validateProducts.validateUpdateProducts(name, id);
+  if (result.type) return result;
+  await productsModel.updateProduct(name, id);
+  return { type: null, message: result.message, status: result.status };
+};
+
 module.exports = {
   findAllProducts,
   findProductsById,
   insertProduct,
+  updateProduct,
 };
