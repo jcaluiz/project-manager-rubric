@@ -3,6 +3,7 @@ const sinon = require('sinon');
 const productsModel = require('../../../src/models/products.model');
 const productsService = require('../../../src/services/products.service');
 const validateProducts = require('../../../src/services/validations/validations');
+const productsServicesMock = require('./mocks/productsServicesMock');
 
 describe('Verificando o Service de produtos', () => {
   describe('Verificando casos de retorno undefined', () => {
@@ -32,6 +33,19 @@ describe('Verificando o Service de produtos', () => {
       // Assertiva
       expect(error.type).to.equal('PRODUCT_NOT_FOUND');
       expect(error.message).to.equal('Product not found');
+    });
+    describe('Cadastro de um produto com valores válidos', () => {
+      it('Retorna o ID do produto cadastrado', async () => {
+        sinon.stub(productsModel, 'insertProduct').resolves([{ insertId: 1 }]);
+        sinon.stub(productsModel, 'findProductsById')
+          .resolves(productsServicesMock.allProducts[0]);
+        
+        const result = await productsService.insertProduct({
+          name: productsServicesMock.allProducts[0].name
+        })
+        expect(result.type).to.equal(null);
+        expect(result.message.insertId).to.deep.equal(productsServicesMock.allProducts[0].id);
+      })
     })
   });
   afterEach(sinon.restore);
