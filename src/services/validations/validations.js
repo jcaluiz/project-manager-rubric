@@ -1,6 +1,6 @@
 const productsModel = require('../../models/products.model');
 const schema = require('./schema');
-// const salesModel = require('../../models/sales.models');
+const salesModel = require('../../models/sales.models');
 
 const validateProducts = async () => {
   const products = await productsModel.findAllProducts();
@@ -44,9 +44,30 @@ const validateInsertSales = async (sale) => {
   return { type: null, message: '' };
 };
 
+const validateSales = async () => {
+  const products = await salesModel.findSalesByAll();
+  if (!products) {
+    return { type: 'SALE_NOT_FOUND', message: 'Sale not found', status: 404 };
+  }
+  return { type: null, message: '' };
+};
+
+const validateSalesFindById = async (saleId) => {
+  const [salesById] = await salesModel.findSalesById(saleId);
+  if (!salesById || salesById === []) {
+    return {
+      type: 'SALE_NOT_FOUND',
+      message: 'Sale not found',
+    };
+  }
+  return { type: null, message: '' };
+};
+
 module.exports = {
   validateProducts,
   validateProductsFindById,
   validateInsertProducts,
   validateInsertSales,
+  validateSales,
+  validateSalesFindById,
 };
