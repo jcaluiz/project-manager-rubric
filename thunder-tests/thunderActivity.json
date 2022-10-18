@@ -8,7 +8,7 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-10-11T20:19:57.529Z",
-    "modified": "2022-10-13T15:12:46.696Z",
+    "modified": "2022-10-18T18:27:00.509Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -22,7 +22,7 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-10-11T20:32:09.640Z",
-    "modified": "2022-10-11T20:38:13.550Z",
+    "modified": "2022-10-18T18:50:36.192Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -200,6 +200,20 @@
       "raw": "{\n  \"name\": \"Martelo do Batman\"\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "09cf2de0-cd15-49e0-b2d0-eb019a633ff4",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/1",
+    "url": "http://localhost:3000/products/1",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-10-18T18:50:21.610Z",
+    "modified": "2022-10-18T18:53:36.638Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]

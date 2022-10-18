@@ -28,9 +28,20 @@ const updateProduct = async (name, id) => {
   return { type: null, message: result.message, status: result.status };
 };
 
+const deleteProduct = async (id) => {
+  const result = await validateProducts.validateDeleteProducts(id);
+  // console.log(result);
+  if (result.type) {
+    return result;
+  }
+  const resultDelete = await productsModel.deleteProduct(id);
+  return { type: result.type, status: result.status, message: resultDelete };
+};
+
 module.exports = {
   findAllProducts,
   findProductsById,
   insertProduct,
   updateProduct,
+  deleteProduct,
 };

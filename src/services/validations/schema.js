@@ -56,9 +56,20 @@ const validateUpdate = async (name) => {
   return null;
 };
 
+const validateDelete = async (id) => {
+  const getAll = await productModel.findAllProducts();
+  const resultProduct = getAll.some((product) => product.id === id);
+  console.log(resultProduct);
+  if (!resultProduct) {
+    return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found', status: 404 };
+  }
+  return { type: null, message: '', status: 204 };
+};
+
 module.exports = {
   validateSalesSchema,
   validateNameSchema,
   validateSalesSchema2,
   validateUpdate,
+  validateDelete,
 };

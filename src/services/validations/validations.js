@@ -83,6 +83,11 @@ const validateUpdateProducts = async (name, id) => {
   return { type: null, message: '', status: 200 };
 };
 
+const validateDeleteProducts = async (id) => {
+  const validateDelete = await schema.validateDelete(id);
+  return validateDelete;
+};
+
 module.exports = {
   validateProducts,
   validateProductsFindById,
@@ -91,4 +96,5 @@ module.exports = {
   validateSales,
   validateSalesFindById,
   validateUpdateProducts,
+  validateDeleteProducts,
 };
