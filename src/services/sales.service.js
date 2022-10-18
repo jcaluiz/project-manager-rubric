@@ -34,6 +34,7 @@ const findAllSales = async () => {
 
 const findSalesById = async (saleId) => {
   const error = await validateSales.validateSalesFindById(saleId);
+  console.log(error);
   if (error.type) return error;
   const result = await salesModel.findSalesById(saleId);
   const result2 = await salesModel.findSalesDate();
@@ -47,6 +48,7 @@ const findSalesById = async (saleId) => {
       }];
     }
   }));
+  console.log({ type: null, message });
   return { type: null, message };
 };
 
